@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add ToDo</title>
+</head>
+<body>
+    <h1>Add ToDo</h1>
+    <div>
+        <form action="#" th:object="${todo}" th:action="@{/save_todo}" method="post">
+            <label>Text</label>
+            <input type="text" th:field="*{todo_text}"/>
+            <label for="priority_list">Priority</label>
+            <select id="priority_list" th:field="*{priority}" class="form-control">
+                <option th:each="priority : ${priority_list}" th:value="${priority.priority_id}" th:text="${priority.priority}"></option>
+            </select>
+            <label>Deadline</label>
+            <input type="text" th:field="*{deadline}" placeholder="yyyy-MM-dd"/>            
+            <input type="submit" value="Save"></input>
+        </form>
+    </div>
+</body>

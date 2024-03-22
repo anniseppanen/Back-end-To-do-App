@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <title>Todo-list</title>
+</head>
+<body>
+<div>
+    <p sec:authentication="name"></p>
+</div>
+<table>
+    <tr>
+        <th>ToDo</th>
+        <th>
+            <a th:href="@{/todos?sort=priority}">Priority</a>
+
+        </th>
+        <th>
+            <a th:href="@{/todos?sort=deadline}">Deadline</a>
+        </th>
+    </tr>
+    <tr th:each="todo : ${todo_list}">
+        <td th:text="${todo.todo_text}"></td>
+        <td th:text="${todo.priority.priority}"></td>
+        <td th:text="${todo.deadline}"></td>
+        <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${todo.id})}">Edit</a></td>
+        <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${todo.id})}">Delete</a></td>
+    </tr>
+</table>
+<p sec:authorize="hasAuthority('ADMIN')"><a href="/add">Add new</a></p>
+</body>
+</html>
