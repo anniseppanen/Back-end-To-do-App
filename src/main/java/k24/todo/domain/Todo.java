@@ -2,13 +2,18 @@ package k24.todo.domain;
 import java.util.Date;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 public class Todo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty(message = "text cannot be empty")
     private String todo_text;
+    @Pattern(regexp = "^\\d{4}-(0?[1-9]|1[0-2])-(0?[1-9]|[12][0-9]|3[01])$", 
+            message = "deadline must be in the format yyyy-MM-dd, and the month must be between 1-12 and the day must be between 1-31")
     private String deadline;
 
     @ManyToOne

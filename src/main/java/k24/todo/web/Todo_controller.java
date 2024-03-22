@@ -5,11 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jakarta.validation.Valid;
 import k24.todo.domain.Priority_repository;
 import k24.todo.domain.Todo;
 import k24.todo.domain.Todo_repository;
@@ -47,7 +50,12 @@ public class Todo_controller {
     }
 
     @PostMapping("/save_todo")
-    public String saveTodo(Todo todo) {
+    public String saveTodo(@Valid @ModelAttribute("todo") Todo todo, BindingResult bindingResult, Model model) {
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("todo", todo);
+            model.addAttribute("priority_list", priority_repository.findAll());
+            return "add";
+        }
         todo_repository.save(todo);
         return "redirect:todos";
     }
