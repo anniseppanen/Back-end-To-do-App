@@ -1,6 +1,8 @@
 package k24.todo.domain;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -10,6 +12,8 @@ public class Priority {
     private Long priority_id;
     private int priority;
 
+    // Tämä estää loputtoman loopin tapahtumisen
+    @JsonIgnore
     // CascadeType.ALL viittaa siihen, että jos todo, jolla on jokin prioriteetti poistetaan, poistetaan myös tämän priority-taulun tiedot
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "priority")
     private List<Todo> todos;

@@ -1,5 +1,4 @@
 package k24.todo.domain;
-import java.util.Date;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;

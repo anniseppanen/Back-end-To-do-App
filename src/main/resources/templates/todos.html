@@ -11,6 +11,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <table>
     <tr>
         <th>ToDo</th>
+        <th>ID</th>
         <th>
             <a th:href="@{/todos?sort=priority}">Priority</a>
 
@@ -21,6 +22,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     </tr>
     <tr th:each="todo : ${todo_list}">
         <td th:text="${todo.todo_text}"></td>
+        <td th:text="${todo.id}"></td>
         <td th:text="${todo.priority.priority}"></td>
         <td th:text="${todo.deadline}"></td>
         <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${todo.id})}">Edit</a></td>
