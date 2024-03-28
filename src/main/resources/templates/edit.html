@@ -8,15 +8,15 @@
     <div>
         <form action="#" th:object="${todo}" th:action="@{/save_todo}" method="post">
             <input type="hidden" id="id" th:field="*{id}" />
-            <label>Text</label>
-            <input type="text" th:field="*{todo_text}"/>
+            <div><label>Text</label>
+            <input type="text" th:field="*{todo_text}"/></div>
             <div th:if="${#fields.hasErrors('todo_text')}" th:errors="*{todo_text}">Error</div>
-            <label for="priority_list">Priority</label>
+            <div><label for="priority_list">Priority</label>
             <select id="priority_list" th:field="*{priority}" class="form-control">
                 <option th:each="priority : ${priority_list}" th:value="${priority.priority_id}" th:text="${priority.priority}"></option>
-            </select>
-            <label>Deadline</label>
-            <input type="text" th:field="*{deadline}" placeholder="yyyy-MM-dd"/> 
+            </select></div>
+            <div><label>Deadline</label>
+            <input type="text" th:field="*{deadline}" placeholder="yyyy-MM-dd"/></div>
             <div th:if="${#fields.hasErrors('deadline')}" th:errors="*{deadline}">Error</div>            
             <input type="submit" value="Save"></input>
         </form>
