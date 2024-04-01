@@ -2,7 +2,7 @@
 
 # Build stage
 # Use an official Maven image as the base image
-FROM maven:3.8.6-eclipse-temurin-17-focal AS build
+FROM maven:3.9.6-eclipse-temurin-17-focal AS build
 # Copy the project files and the pom.xml to the container
 COPY src /home/app/src
 COPY pom.xml /home/app
