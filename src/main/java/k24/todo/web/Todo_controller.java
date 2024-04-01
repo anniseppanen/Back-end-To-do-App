@@ -30,13 +30,13 @@ public class Todo_controller {
 
     @GetMapping("/todos")
     public String showTodos(Model model, @RequestParam(name="sort", required=false) String sort) {
-        if("deadline".equals(sort)) {
-            model.addAttribute("todo_list", todo_repository.findAllByOrderByDeadlineAsc());
-        } else if("priority".equals(sort)) {
-            model.addAttribute("todo_list", todo_repository.findAllByOrderByPriorityAsc());
-        } else {
+        //if("deadline".equals(sort)) {
+        //    model.addAttribute("todo_list", todo_repository.findAllByOrderByDeadlineAsc());
+        //} else if("priority".equals(sort)) {
+        //    model.addAttribute("todo_list", todo_repository.findAllByOrderByPriorityAsc());
+        //} else {
         model.addAttribute("todo_list", todo_repository.findAll());
-        }
+        //}
         return "todos";
     }
 
