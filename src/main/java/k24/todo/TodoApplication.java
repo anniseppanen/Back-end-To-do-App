@@ -17,7 +17,7 @@ public class TodoApplication {
 		SpringApplication.run(TodoApplication.class, args);
 	}
 
-	@Bean
+	/*@Bean
 	public CommandLineRunner demo(Todo_user_repository todo_user_repository, Priority_repository priority_repository) {
 		return (args) -> {
 			Todo_user user = new Todo_user("user", "$2a$12$usVKZCf8sy181z.oxwno6ubp6Vnp6ketU4C9u1y6mQFXBTmkp8szG", "USER");
@@ -33,6 +33,6 @@ public class TodoApplication {
 			priority_repository.save(priority2);
 			priority_repository.save(priority3);
 		};
-	}
+	}*/
 
 }

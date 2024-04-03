@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add User</title>
+</head>
+<body>
+    <h1>Add User</h1>
+    <div>
+        <form action="#" th:object="${todo_user}" th:action="@{/save_user}" method="post">
+            <div><label>Username</label>
+            <input type="text" th:field="*{username}"/></div>
+            <!--<div th:if="${#fields.hasErrors('todo_text')}" th:errors="*{todo_text}">Error</div>-->
+            <div><label>Password</label>
+            <input type="text" th:field="*{password_hash}"></div>
+            <div><label>Role</label>
+            <input type="text" th:field="*{role}" placeholder="USER, ADMIN"/></div>
+            <!--<div th:if="${#fields.hasErrors('deadline')}" th:errors="*{deadline}">Error</div>-->            
+            <input type="submit" value="Save"></input>
+        </form>
+    </div>
+</body>

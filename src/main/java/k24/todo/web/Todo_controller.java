@@ -14,6 +14,8 @@ import jakarta.validation.Valid;
 import k24.todo.domain.Priority_repository;
 import k24.todo.domain.Todo;
 import k24.todo.domain.Todo_repository;
+import k24.todo.domain.Todo_user;
+import k24.todo.domain.Todo_user_repository;
 
 
 @Controller
@@ -22,6 +24,8 @@ public class Todo_controller {
     Todo_repository todo_repository;
     @Autowired
     Priority_repository priority_repository;
+    @Autowired
+    Todo_user_repository todo_user_repository;
     
     @GetMapping("/login")
     public String login() {
@@ -30,13 +34,13 @@ public class Todo_controller {
 
     @GetMapping("/todos")
     public String showTodos(Model model, @RequestParam(name="sort", required=false) String sort) {
-        //if("deadline".equals(sort)) {
-        //    model.addAttribute("todo_list", todo_repository.findAllByOrderByDeadlineAsc());
-        //} else if("priority".equals(sort)) {
-        //    model.addAttribute("todo_list", todo_repository.findAllByOrderByPriorityAsc());
-        //} else {
+        if("deadline".equals(sort)) {
+            model.addAttribute("todo_list", todo_repository.findAllByOrderByDeadlineAsc());
+        } else if("priority".equals(sort)) {
+            model.addAttribute("todo_list", todo_repository.findAllByOrderByPriorityAsc());
+        } else {
         model.addAttribute("todo_list", todo_repository.findAll());
-        //}
+        }
         return "todos";
     }
 
@@ -71,5 +75,18 @@ public class Todo_controller {
         model.addAttribute("priority_list", priority_repository.findAll());
         return "edit";
     }
+
+    @GetMapping("/add_user")
+    public String showAddUser(Model model) {
+        model.addAttribute("todo_user", new Todo_user());
+        return "add_user";
+    }
+    
+    @GetMapping("users")
+    public String showUsers(Model model) {
+        model.addAttribute("user_list", todo_user_repository.findAll());
+        return "users";
+    }
+    
 }
 
